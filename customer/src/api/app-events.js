@@ -12,6 +12,6 @@ module.exports = app => {
       '======================== Shopping Service received Event ========================'
     );
 
-    return res.status().json(payload);
+    return res.status(200).json(payload);
   });
 };
