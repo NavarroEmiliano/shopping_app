@@ -1,12 +1,12 @@
-const ProductService = require("../services/product-service");
-const CustomerService = require("../services/customer-service");
-const UserAuth = require("./middlewares/auth");
+const ProductService = require('../services/product-service');
+const CustomerService = require('../services/customer-service');
+const UserAuth = require('./middlewares/auth');
 
 module.exports = (app) => {
   const service = new ProductService();
   const customerService = new CustomerService();
 
-  app.post("/product/create", async (req, res, next) => {
+  app.post('/product/create', async (req, res, next) => {
     try {
       const { name, desc, type, unit, price, available, suplier, banner } =
         req.body;
@@ -27,7 +27,7 @@ module.exports = (app) => {
     }
   });
 
-  app.get("/category/:type", async (req, res, next) => {
+  app.get('/category/:type', async (req, res, next) => {
     const type = req.params.type;
 
     try {
@@ -38,7 +38,7 @@ module.exports = (app) => {
     }
   });
 
-  app.get("/:id", async (req, res, next) => {
+  app.get('/:id', async (req, res, next) => {
     const productId = req.params.id;
 
     try {
@@ -49,7 +49,7 @@ module.exports = (app) => {
     }
   });
 
-  app.post("/ids", async (req, res, next) => {
+  app.post('/ids', async (req, res, next) => {
     try {
       const { ids } = req.body;
       const products = await service.GetSelectedProducts(ids);
@@ -59,7 +59,7 @@ module.exports = (app) => {
     }
   });
 
-  app.put("/wishlist", UserAuth, async (req, res, next) => {
+  app.put('/wishlist', UserAuth, async (req, res, next) => {
     const { _id } = req.user;
 
     try {
@@ -69,7 +69,7 @@ module.exports = (app) => {
     } catch (err) {}
   });
 
-  app.delete("/wishlist/:id", UserAuth, async (req, res, next) => {
+  app.delete('/wishlist/:id', UserAuth, async (req, res, next) => {
     const { _id } = req.user;
     const productId = req.params.id;
 
@@ -82,7 +82,7 @@ module.exports = (app) => {
     }
   });
 
-  app.put("/cart", UserAuth, async (req, res, next) => {
+  app.put('/cart', UserAuth, async (req, res, next) => {
     const { _id, qty } = req.body;
 
     try {
@@ -101,7 +101,7 @@ module.exports = (app) => {
     }
   });
 
-  app.delete("/cart/:id", UserAuth, async (req, res, next) => {
+  app.delete('/cart/:id', UserAuth, async (req, res, next) => {
     const { _id } = req.user;
 
     try {
@@ -114,7 +114,7 @@ module.exports = (app) => {
   });
 
   //get Top products and category
-  app.get("/", async (req, res, next) => {
+  app.get('/', async (req, res, next) => {
     //check validation
     try {
       const { data } = await service.GetProducts();

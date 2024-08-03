@@ -1,6 +1,6 @@
-const { CustomerModel, ProductModel, OrderModel } = require("../models");
-const { v4: uuidv4 } = require("uuid");
-const { APIError, BadRequestError } = require("../../utils/app-errors");
+const { CustomerModel, ProductModel, OrderModel } = require('../models');
+const { v4: uuidv4 } = require('uuid');
+const { APIError, BadRequestError } = require('../../utils/app-errors');
 
 //Dealing with data base operations
 class ShoppingRepository {
@@ -9,14 +9,14 @@ class ShoppingRepository {
   async Orders(customerId) {
     try {
       const orders = await OrderModel.find({ customerId }).populate(
-        "items.product",
+        'items.product',
       );
       return orders;
     } catch (err) {
       throw APIError(
-        "API Error",
+        'API Error',
         STATUS_CODES.INTERNAL_ERROR,
-        "Unable to Find Orders",
+        'Unable to Find Orders',
       );
     }
   }
@@ -26,7 +26,7 @@ class ShoppingRepository {
 
     try {
       const profile =
-        await CustomerModel.findById(customerId).populate("cart.product");
+        await CustomerModel.findById(customerId).populate('cart.product');
 
       if (profile) {
         let amount = 0;
@@ -46,13 +46,13 @@ class ShoppingRepository {
             customerId,
             amount,
             txnId,
-            status: "received",
+            status: 'received',
             items: cartItems,
           });
 
           profile.cart = [];
 
-          order.populate("items.product").execPopulate();
+          order.populate('items.product').execPopulate();
           const orderResult = await order.save();
 
           profile.orders.push(orderResult);
@@ -66,9 +66,9 @@ class ShoppingRepository {
       return {};
     } catch (err) {
       throw APIError(
-        "API Error",
+        'API Error',
         STATUS_CODES.INTERNAL_ERROR,
-        "Unable to Find Category",
+        'Unable to Find Category',
       );
     }
   }

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
@@ -13,7 +13,7 @@ const OrderSchema = new Schema(
       {
         product: {
           type: Schema.Types.ObjectId,
-          ref: "product",
+          ref: 'product',
           required: true,
         },
         unit: { type: Number, require: true },
@@ -30,4 +30,4 @@ const OrderSchema = new Schema(
   },
 );
 
-module.exports = mongoose.model("order", OrderSchema);
+module.exports = mongoose.model('order', OrderSchema);

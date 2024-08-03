@@ -1,6 +1,6 @@
-const { ProductRepository } = require("../database");
-const { FormateData } = require("../utils");
-const { APIError } = require("../utils/app-errors");
+const { ProductRepository } = require('../database');
+const { FormateData } = require('../utils');
+const { APIError } = require('../utils/app-errors');
 
 // All Business logic will be here
 class ProductService {
@@ -13,7 +13,7 @@ class ProductService {
       const productResult = await this.repository.CreateProduct(productInputs);
       return FormateData(productResult);
     } catch (err) {
-      throw new APIError("Data Not found");
+      throw new APIError('Data Not found');
     }
   }
 
@@ -32,7 +32,7 @@ class ProductService {
         categories: Object.keys(categories),
       });
     } catch (err) {
-      throw new APIError("Data Not found");
+      throw new APIError('Data Not found');
     }
   }
 
@@ -41,7 +41,7 @@ class ProductService {
       const product = await this.repository.FindById(productId);
       return FormateData(product);
     } catch (err) {
-      throw new APIError("Data Not found");
+      throw new APIError('Data Not found');
     }
   }
 
@@ -50,7 +50,7 @@ class ProductService {
       const products = await this.repository.FindByCategory(category);
       return FormateData(products);
     } catch (err) {
-      throw new APIError("Data Not found");
+      throw new APIError('Data Not found');
     }
   }
 
@@ -59,7 +59,7 @@ class ProductService {
       const products = await this.repository.FindSelectedProducts(selectedIds);
       return FormateData(products);
     } catch (err) {
-      throw new APIError("Data Not found");
+      throw new APIError('Data Not found');
     }
   }
 
@@ -67,7 +67,7 @@ class ProductService {
     try {
       return await this.repository.FindById(productId);
     } catch (err) {
-      throw new APIError("Data Not found");
+      throw new APIError('Data Not found');
     }
   }
 }

@@ -1,12 +1,12 @@
-const { CustomerRepository } = require("../database");
+const { CustomerRepository } = require('../database');
 const {
   FormateData,
   GeneratePassword,
   GenerateSalt,
   GenerateSignature,
   ValidatePassword,
-} = require("../utils");
-const { APIError, BadRequestError } = require("../utils/app-errors");
+} = require('../utils');
+const { APIError, BadRequestError } = require('../utils/app-errors');
 
 // All Business logic will be here
 class CustomerService {
@@ -38,7 +38,7 @@ class CustomerService {
 
       return FormateData(null);
     } catch (err) {
-      throw new APIError("Data Not found", err);
+      throw new APIError('Data Not found', err);
     }
   }
 
@@ -65,7 +65,7 @@ class CustomerService {
 
       return FormateData({ id: existingCustomer._id, token });
     } catch (err) {
-      throw new APIError("Data Not found", err);
+      throw new APIError('Data Not found', err);
     }
   }
 
@@ -82,7 +82,7 @@ class CustomerService {
       });
       return FormateData(addressResult);
     } catch (err) {
-      throw new APIError("Data Not found", err);
+      throw new APIError('Data Not found', err);
     }
   }
 
@@ -91,7 +91,7 @@ class CustomerService {
       const existingCustomer = await this.repository.FindCustomerById({ id });
       return FormateData(existingCustomer);
     } catch (err) {
-      throw new APIError("Data Not found", err);
+      throw new APIError('Data Not found', err);
     }
   }
 
@@ -102,9 +102,9 @@ class CustomerService {
       if (existingCustomer) {
         return FormateData(existingCustomer);
       }
-      return FormateData({ msg: "Error" });
+      return FormateData({ msg: 'Error' });
     } catch (err) {
-      throw new APIError("Data Not found", err);
+      throw new APIError('Data Not found', err);
     }
   }
 
@@ -113,7 +113,7 @@ class CustomerService {
       const wishListItems = await this.repository.Wishlist(customerId);
       return FormateData(wishListItems);
     } catch (err) {
-      throw new APIError("Data Not found", err);
+      throw new APIError('Data Not found', err);
     }
   }
 
@@ -125,7 +125,7 @@ class CustomerService {
       );
       return FormateData(wishlistResult);
     } catch (err) {
-      throw new APIError("Data Not found", err);
+      throw new APIError('Data Not found', err);
     }
   }
 
@@ -139,7 +139,7 @@ class CustomerService {
       );
       return FormateData(cartResult);
     } catch (err) {
-      throw new APIError("Data Not found", err);
+      throw new APIError('Data Not found', err);
     }
   }
 
@@ -151,7 +151,7 @@ class CustomerService {
       );
       return FormateData(orderResult);
     } catch (err) {
-      throw new APIError("Data Not found", err);
+      throw new APIError('Data Not found', err);
     }
   }
 
@@ -161,21 +161,21 @@ class CustomerService {
     const { userId, product, order, qty } = data;
 
     switch (event) {
-      case "ADD_TO_WISHLIST":
-      case "REMOVE_FROM_WISHLIST":
+      case 'ADD_TO_WISHLIST':
+      case 'REMOVE_FROM_WISHLIST':
         this.AddToWishlist(userId, product);
         break;
-      case "ADD_TO_CART":
+      case 'ADD_TO_CART':
         this.ManageCart(userId, product, qty, false);
         break;
-      case "REMOVE_FROM_CART":
+      case 'REMOVE_FROM_CART':
         this.ManageCart(userId, product, qty, true);
         break;
-      case "CREATE_ORDER":
+      case 'CREATE_ORDER':
         this.ManageOrder(userId, order);
         break;
-      case "TESTING":
-        console.log("WORKING.... Subscriber");
+      case 'TESTING':
+        console.log('WORKING.... Subscriber');
         break;
       default:
         break;

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
@@ -8,7 +8,7 @@ const CustomerSchema = new Schema(
     password: String,
     salt: String,
     phone: String,
-    address: [{ type: Schema.Types.ObjectId, ref: "address", require: true }],
+    address: [{ type: Schema.Types.ObjectId, ref: 'address', require: true }],
     cart: [
       {
         product: {
@@ -50,4 +50,4 @@ const CustomerSchema = new Schema(
   },
 );
 
-module.exports = mongoose.model("customer", CustomerSchema);
+module.exports = mongoose.model('customer', CustomerSchema);

@@ -1,12 +1,12 @@
-const ShoppingService = require("../services/shopping-service");
-const UserService = require("../services/customer-service");
-const UserAuth = require("./middlewares/auth");
+const ShoppingService = require('../services/shopping-service');
+const UserService = require('../services/customer-service');
+const UserAuth = require('./middlewares/auth');
 
 module.exports = (app) => {
   const service = new ShoppingService();
   const userService = new UserService();
 
-  app.post("/shopping/order", UserAuth, async (req, res, next) => {
+  app.post('/shopping/order', UserAuth, async (req, res, next) => {
     const { _id } = req.user;
     const { txnNumber } = req.body;
 
@@ -18,7 +18,7 @@ module.exports = (app) => {
     }
   });
 
-  app.get("/shopping/orders", UserAuth, async (req, res, next) => {
+  app.get('/shopping/orders', UserAuth, async (req, res, next) => {
     const { _id } = req.user;
 
     try {
@@ -29,7 +29,7 @@ module.exports = (app) => {
     }
   });
 
-  app.get("/shopping/cart", UserAuth, async (req, res, next) => {
+  app.get('/shopping/cart', UserAuth, async (req, res, next) => {
     const { _id } = req.user;
     try {
       const { data } = await userService.GetShopingDetails(_id);

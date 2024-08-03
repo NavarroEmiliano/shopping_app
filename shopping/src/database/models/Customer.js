@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
@@ -8,21 +8,21 @@ const CustomerSchema = new Schema(
     password: String,
     salt: String,
     phone: String,
-    address: [{ type: Schema.Types.ObjectId, ref: "address", require: true }],
+    address: [{ type: Schema.Types.ObjectId, ref: 'address', require: true }],
     cart: [
       {
-        product: { type: Schema.Types.ObjectId, ref: "product", require: true },
+        product: { type: Schema.Types.ObjectId, ref: 'product', require: true },
         unit: { type: Number, require: true },
       },
     ],
     wishlist: [
       {
         type: Schema.Types.ObjectId,
-        ref: "product",
+        ref: 'product',
         require: true,
       },
     ],
-    orders: [{ type: Schema.Types.ObjectId, ref: "order", require: true }],
+    orders: [{ type: Schema.Types.ObjectId, ref: 'order', require: true }],
   },
   {
     toJSON: {
@@ -36,4 +36,4 @@ const CustomerSchema = new Schema(
   },
 );
 
-module.exports = mongoose.model("customer", CustomerSchema);
+module.exports = mongoose.model('customer', CustomerSchema);
