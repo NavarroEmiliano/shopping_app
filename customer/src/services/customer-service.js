@@ -174,6 +174,9 @@ class CustomerService {
       case 'CREATE_ORDER':
         this.ManageOrder(userId, order);
         break;
+      case 'TEST':
+          console.log('WORKING.... Subscriber')
+          break;
       default:
         break;
     }
