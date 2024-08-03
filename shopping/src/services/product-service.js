@@ -11,10 +11,10 @@ class ProductService {
 
     async CreateProduct(productInputs){
         try{
-            const productResult = await this.repository.CreateProduct(productInputs)
+            const productResult = await this.repository.CreateProduct(productInputs);
             return FormateData(productResult);
         }catch(err){
-            throw new APIError('Data Not found')
+            throw new APIError('Data Not found');
         }
     }
     
@@ -22,7 +22,7 @@ class ProductService {
         try{
             const products = await this.repository.Products();
     
-            let categories = {};
+            const categories = {};
     
             products.map(({ type }) => {
                 categories[type] = type;
@@ -31,10 +31,10 @@ class ProductService {
             return FormateData({
                 products,
                 categories:  Object.keys(categories) ,
-            })
+            });
 
         }catch(err){
-            throw new APIError('Data Not found')
+            throw new APIError('Data Not found');
         }
     }
 
@@ -42,18 +42,18 @@ class ProductService {
     async GetProductDescription(productId){
         try {
             const product = await this.repository.FindById(productId);
-            return FormateData(product)
+            return FormateData(product);
         } catch (err) {
-            throw new APIError('Data Not found')
+            throw new APIError('Data Not found');
         }
     }
 
     async GetProductsByCategory(category){
         try {
             const products = await this.repository.FindByCategory(category);
-            return FormateData(products)
+            return FormateData(products);
         } catch (err) {
-            throw new APIError('Data Not found')
+            throw new APIError('Data Not found');
         }
 
     }
@@ -63,7 +63,7 @@ class ProductService {
             const products = await this.repository.FindSelectedProducts(selectedIds);
             return FormateData(products);
         } catch (err) {
-            throw new APIError('Data Not found')
+            throw new APIError('Data Not found');
         }
     }
 
@@ -71,7 +71,7 @@ class ProductService {
         try {
             return await this.repository.FindById(productId);
         } catch (err) {
-            throw new APIError('Data Not found')
+            throw new APIError('Data Not found');
         }
     }
      

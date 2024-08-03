@@ -113,7 +113,7 @@ class CustomerRepository {
       const profile = await CustomerModel.findById(customerId);
 
       if (profile) {
-        let wishlist = profile.wishlist;
+        const wishlist = profile.wishlist;
 
         if (wishlist.length > 0) {
           let isExist = false;
@@ -157,12 +157,12 @@ class CustomerRepository {
           unit: qty
         };
 
-        let cartItems = profile.cart;
+        const cartItems = profile.cart;
 
         if (cartItems.length > 0) {
           let isExist = false;
           cartItems.map(item => {
-            if (item.product._id.toString() === product._id.toString()) {
+            if (item.product._id.toString() === cartItem.product._id.toString()) {
               if (isRemove) {
                 cartItems.splice(cartItems.indexOf(item), 1);
               } else {

@@ -47,9 +47,9 @@ class CustomerService {
 
     try {
       // create salt
-      let salt = await GenerateSalt();
+      const salt = await GenerateSalt();
 
-      let userPassword = await GeneratePassword(password, salt);
+      const userPassword = await GeneratePassword(password, salt);
 
       const existingCustomer = await this.repository.CreateCustomer({
         email,
@@ -175,7 +175,7 @@ class CustomerService {
         this.ManageOrder(userId, order);
         break;
       case 'TESTING':
-          console.log('WORKING.... Subscriber')
+          console.log('WORKING.... Subscriber');
           break;
       default:
         break;

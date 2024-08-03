@@ -1,6 +1,6 @@
 const ProductService = require('../services/product-service');
 const CustomerService = require('../services/customer-service');
-const UserAuth = require('./middlewares/auth')
+const UserAuth = require('./middlewares/auth');
 
 module.exports = (app) => {
     
@@ -17,7 +17,7 @@ module.exports = (app) => {
             return res.json(data);
             
         } catch (err) {
-            next(err)    
+            next(err);    
         }
         
     });
@@ -27,11 +27,11 @@ module.exports = (app) => {
         const type = req.params.type;
         
         try {
-            const { data } = await service.GetProductsByCategory(type)
+            const { data } = await service.GetProductsByCategory(type);
             return res.status(200).json(data);
 
         } catch (err) {
-            next(err)
+            next(err);
         }
 
     });
@@ -45,7 +45,7 @@ module.exports = (app) => {
             return res.status(200).json(data);
 
         } catch (err) {
-            next(err)
+            next(err);
         }
 
     });
@@ -58,7 +58,7 @@ module.exports = (app) => {
             return res.status(200).json(products);
             
         } catch (err) {
-            next(err)
+            next(err);
         }
        
     });
@@ -69,10 +69,10 @@ module.exports = (app) => {
         
         try {
             const product = await service.GetProductById(req.body._id);
-            const wishList = await customerService.AddToWishlist(_id, product)
+            const wishList = await customerService.AddToWishlist(_id, product);
             return res.status(200).json(wishList);
         } catch (err) {
-            
+            next(err);
         }
     });
     
@@ -83,10 +83,10 @@ module.exports = (app) => {
 
         try {
             const product = await service.GetProductById(productId);
-            const wishlist = await customerService.AddToWishlist(_id, product)
+            const wishlist = await customerService.AddToWishlist(_id, product);
             return res.status(200).json(wishlist);
         } catch (err) {
-            next(err)
+            next(err);
         }
     });
 
@@ -103,7 +103,7 @@ module.exports = (app) => {
             return res.status(200).json(result);
             
         } catch (err) {
-            next(err)
+            next(err);
         }
     });
     
@@ -116,7 +116,7 @@ module.exports = (app) => {
             const result = await customerService.ManageCart(_id, product, 0 , true);             
             return res.status(200).json(result);
         } catch (err) {
-            next(err)
+            next(err);
         }
     });
 
@@ -126,10 +126,10 @@ module.exports = (app) => {
         try {
             const { data} = await service.GetProducts();        
             return res.status(200).json(data);
-        } catch (error) {
-            next(err)
+        } catch (err) {
+            next(err);
         }
         
     });
     
-}
+};

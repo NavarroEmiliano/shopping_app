@@ -107,7 +107,7 @@ class CustomerRepository {
       );
 
       if (profile) {
-        let wishlist = profile.wishlist;
+        const wishlist = profile.wishlist;
 
         if (wishlist.length > 0) {
           let isExist = false;
@@ -153,7 +153,7 @@ class CustomerRepository {
           unit: qty,
         };
 
-        let cartItems = profile.cart;
+        const cartItems = profile.cart;
 
         if (cartItems.length > 0) {
           let isExist = false;

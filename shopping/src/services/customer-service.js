@@ -1,6 +1,6 @@
 const { CustomerRepository } = require("../database");
 const { FormateData, GeneratePassword, GenerateSalt, GenerateSignature, ValidatePassword } = require('../utils');
-const { APIError, BadRequestError } = require('../utils/app-errors')
+const { APIError, BadRequestError } = require('../utils/app-errors');
 
 
 // All Business logic will be here
@@ -31,7 +31,7 @@ class CustomerService {
             return FormateData(null);
 
         } catch (err) {
-            throw new APIError('Data Not found', err)
+            throw new APIError('Data Not found', err);
         }
 
        
@@ -43,9 +43,9 @@ class CustomerService {
         
         try{
             // create salt
-            let salt = await GenerateSalt();
+            const salt = await GenerateSalt();
             
-            let userPassword = await GeneratePassword(password, salt);
+            const userPassword = await GeneratePassword(password, salt);
             
             const existingCustomer = await this.repository.CreateCustomer({ email, password: userPassword, phone, salt});
             
@@ -54,7 +54,7 @@ class CustomerService {
             return FormateData({id: existingCustomer._id, token });
 
         }catch(err){
-            throw new APIError('Data Not found', err)
+            throw new APIError('Data Not found', err);
         }
 
     }
@@ -64,11 +64,11 @@ class CustomerService {
         const { street, postalCode, city,country} = userInputs;
         
         try {
-            const addressResult = await this.repository.CreateAddress({ _id, street, postalCode, city,country})
+            const addressResult = await this.repository.CreateAddress({ _id, street, postalCode, city,country});
             return FormateData(addressResult);
             
         } catch (err) {
-            throw new APIError('Data Not found', err)
+            throw new APIError('Data Not found', err);
         }
         
     
@@ -81,7 +81,7 @@ class CustomerService {
             return FormateData(existingCustomer);
             
         } catch (err) {
-            throw new APIError('Data Not found', err)
+            throw new APIError('Data Not found', err);
         }
     }
 
@@ -96,7 +96,7 @@ class CustomerService {
             return FormateData({ msg: 'Error'});
             
         } catch (err) {
-            throw new APIError('Data Not found', err)
+            throw new APIError('Data Not found', err);
         }
     }
 
@@ -106,7 +106,7 @@ class CustomerService {
             const wishListItems = await this.repository.Wishlist(customerId);
             return FormateData(wishListItems);
         } catch (err) {
-            throw new APIError('Data Not found', err)           
+            throw new APIError('Data Not found', err);           
         }
     }
 
@@ -116,7 +116,7 @@ class CustomerService {
            return FormateData(wishlistResult);
     
         } catch (err) {
-            throw new APIError('Data Not found', err)
+            throw new APIError('Data Not found', err);
         }
     }
 
@@ -125,7 +125,7 @@ class CustomerService {
             const cartResult = await this.repository.AddCartItem(customerId, product, qty, isRemove);        
             return FormateData(cartResult);
         } catch (err) {
-            throw new APIError('Data Not found', err)
+            throw new APIError('Data Not found', err);
         }
     }
 
@@ -134,7 +134,7 @@ class CustomerService {
             const orderResult = await this.repository.AddOrderToProfile(customerId, order);
             return FormateData(orderResult);
         } catch (err) {
-            throw new APIError('Data Not found', err)
+            throw new APIError('Data Not found', err);
         }
     }
 
@@ -147,7 +147,7 @@ class CustomerService {
         switch(event){
             case 'ADD_TO_WISHLIST':
             case 'REMOVE_FROM_WISHLIST':
-                this.AddToWishlist(userId,product)
+                this.AddToWishlist(userId,product);
                 break;
             case 'ADD_TO_CART':
                 this.ManageCart(userId,product, qty, false);

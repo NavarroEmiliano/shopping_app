@@ -18,7 +18,7 @@ module.exports = (app) => {
             return res.status(200).json(data);
             
         } catch (err) {
-            next(err)
+            next(err);
         }
 
     });
@@ -47,4 +47,4 @@ module.exports = (app) => {
             next(err);
         }
     });
-}
+};
