@@ -15,7 +15,7 @@ module.exports.GeneratePassword = async (password, salt) => {
 module.exports.ValidatePassword = async (
   enteredPassword,
   savedPassword,
-  salt
+  salt,
 ) => {
   return (await this.GeneratePassword(enteredPassword, salt)) === savedPassword;
 };

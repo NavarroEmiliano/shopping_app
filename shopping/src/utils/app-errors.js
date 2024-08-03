@@ -13,7 +13,7 @@ class AppError extends Error {
     description,
     isOperational,
     errorStack,
-    logingErrorResponse
+    logingErrorResponse,
   ) {
     super(description);
     Object.setPrototypeOf(this, new.target.prototype);
@@ -32,7 +32,7 @@ class APIError extends AppError {
     name,
     statusCode = STATUS_CODES.INTERNAL_ERROR,
     description = "Internal Server Error",
-    isOperational = true
+    isOperational = true,
   ) {
     super(name, statusCode, description, isOperational);
   }
@@ -47,7 +47,7 @@ class BadRequestError extends AppError {
       description,
       true,
       false,
-      logingErrorResponse
+      logingErrorResponse,
     );
   }
 }
@@ -60,7 +60,7 @@ class ValidationError extends AppError {
       STATUS_CODES.BAD_REQUEST,
       description,
       true,
-      errorStack
+      errorStack,
     );
   }
 }

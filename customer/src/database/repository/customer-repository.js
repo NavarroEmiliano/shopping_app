@@ -1,9 +1,9 @@
-const { CustomerModel, AddressModel } = require('../models');
+const { CustomerModel, AddressModel } = require("../models");
 const {
   APIError,
   BadRequestError,
-  STATUS_CODES
-} = require('../../utils/app-errors');
+  STATUS_CODES,
+} = require("../../utils/app-errors");
 
 //Dealing with data base operations
 class CustomerRepository {
@@ -14,15 +14,15 @@ class CustomerRepository {
         password,
         salt,
         phone,
-        address: []
+        address: [],
       });
       const customerResult = await customer.save();
       return customerResult;
     } catch (err) {
       throw new APIError(
-        'API Error',
+        "API Error",
         STATUS_CODES.INTERNAL_ERROR,
-        'Unable to Create Customer'
+        "Unable to Create Customer",
       );
     }
   }
@@ -36,7 +36,7 @@ class CustomerRepository {
           street,
           postalCode,
           city,
-          country
+          country,
         });
 
         await newAddress.save();
@@ -47,9 +47,9 @@ class CustomerRepository {
       return await profile.save();
     } catch (err) {
       throw new APIError(
-        'API Error',
+        "API Error",
         STATUS_CODES.INTERNAL_ERROR,
-        'Error on Create Address'
+        "Error on Create Address",
       );
     }
   }
@@ -60,24 +60,23 @@ class CustomerRepository {
       return existingCustomer;
     } catch (err) {
       throw new APIError(
-        'API Error',
+        "API Error",
         STATUS_CODES.INTERNAL_ERROR,
-        'Unable to Find Customer'
+        "Unable to Find Customer",
       );
     }
   }
 
   async FindCustomerById({ id }) {
     try {
-      const existingCustomer = await CustomerModel.findById(id).populate(
-        'address'
-      );
+      const existingCustomer =
+        await CustomerModel.findById(id).populate("address");
       return existingCustomer;
     } catch (err) {
       throw new APIError(
-        'API Error',
+        "API Error",
         STATUS_CODES.INTERNAL_ERROR,
-        'Unable to Find Customer'
+        "Unable to Find Customer",
       );
     }
   }
@@ -89,16 +88,16 @@ class CustomerRepository {
       return profile.wishlist;
     } catch (err) {
       throw new APIError(
-        'API Error',
+        "API Error",
         STATUS_CODES.INTERNAL_ERROR,
-        'Unable to Get Wishlist '
+        "Unable to Get Wishlist ",
       );
     }
   }
 
   async AddWishlistItem(
     customerId,
-    { _id, name, desc, price, available, banner }
+    { _id, name, desc, price, available, banner },
   ) {
     const product = {
       _id,
@@ -106,7 +105,7 @@ class CustomerRepository {
       desc,
       price,
       available,
-      banner
+      banner,
     };
 
     try {
@@ -117,7 +116,7 @@ class CustomerRepository {
 
         if (wishlist.length > 0) {
           let isExist = false;
-          wishlist.map(item => {
+          wishlist.map((item) => {
             if (item._id.toString() === product._id.toString()) {
               const index = wishlist.indexOf(item);
               wishlist.splice(index, 1);
@@ -140,9 +139,9 @@ class CustomerRepository {
       return profileResult.wishlist;
     } catch (err) {
       throw new APIError(
-        'API Error',
+        "API Error",
         STATUS_CODES.INTERNAL_ERROR,
-        'Unable to Add to WishList'
+        "Unable to Add to WishList",
       );
     }
   }
@@ -154,15 +153,17 @@ class CustomerRepository {
       if (profile) {
         const cartItem = {
           product: { _id, name, price, banner },
-          unit: qty
+          unit: qty,
         };
 
         const cartItems = profile.cart;
 
         if (cartItems.length > 0) {
           let isExist = false;
-          cartItems.map(item => {
-            if (item.product._id.toString() === cartItem.product._id.toString()) {
+          cartItems.map((item) => {
+            if (
+              item.product._id.toString() === cartItem.product._id.toString()
+            ) {
               if (isRemove) {
                 cartItems.splice(cartItems.indexOf(item), 1);
               } else {
@@ -186,12 +187,12 @@ class CustomerRepository {
         return cartSaveResult;
       }
 
-      throw new Error('Unable to add to cart!');
+      throw new Error("Unable to add to cart!");
     } catch (err) {
       throw new APIError(
-        'API Error',
+        "API Error",
         STATUS_CODES.INTERNAL_ERROR,
-        'Unable to Create Customer'
+        "Unable to Create Customer",
       );
     }
   }
@@ -213,12 +214,12 @@ class CustomerRepository {
         return profileResult;
       }
 
-      throw new Error('Unable to add to order!');
+      throw new Error("Unable to add to order!");
     } catch (err) {
       throw new APIError(
-        'API Error',
+        "API Error",
         STATUS_CODES.INTERNAL_ERROR,
-        'Unable to Create Customer'
+        "Unable to Create Customer",
       );
     }
   }

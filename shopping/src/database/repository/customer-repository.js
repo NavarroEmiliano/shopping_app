@@ -22,7 +22,7 @@ class CustomerRepository {
       throw new APIError(
         "API Error",
         STATUS_CODES.INTERNAL_ERROR,
-        "Unable to Create Customer"
+        "Unable to Create Customer",
       );
     }
   }
@@ -49,7 +49,7 @@ class CustomerRepository {
       throw new APIError(
         "API Error",
         STATUS_CODES.INTERNAL_ERROR,
-        "Error on Create Address"
+        "Error on Create Address",
       );
     }
   }
@@ -62,7 +62,7 @@ class CustomerRepository {
       throw new APIError(
         "API Error",
         STATUS_CODES.INTERNAL_ERROR,
-        "Unable to Find Customer"
+        "Unable to Find Customer",
       );
     }
   }
@@ -79,32 +79,30 @@ class CustomerRepository {
       throw new APIError(
         "API Error",
         STATUS_CODES.INTERNAL_ERROR,
-        "Unable to Find Customer"
+        "Unable to Find Customer",
       );
     }
   }
 
   async Wishlist(customerId) {
     try {
-      const profile = await CustomerModel.findById(customerId).populate(
-        "wishlist"
-      );
+      const profile =
+        await CustomerModel.findById(customerId).populate("wishlist");
 
       return profile.wishlist;
     } catch (err) {
       throw new APIError(
         "API Error",
         STATUS_CODES.INTERNAL_ERROR,
-        "Unable to Get Wishlist "
+        "Unable to Get Wishlist ",
       );
     }
   }
 
   async AddWishlistItem(customerId, product) {
     try {
-      const profile = await CustomerModel.findById(customerId).populate(
-        "wishlist"
-      );
+      const profile =
+        await CustomerModel.findById(customerId).populate("wishlist");
 
       if (profile) {
         const wishlist = profile.wishlist;
@@ -136,16 +134,15 @@ class CustomerRepository {
       throw new APIError(
         "API Error",
         STATUS_CODES.INTERNAL_ERROR,
-        "Unable to Add to WishList"
+        "Unable to Add to WishList",
       );
     }
   }
 
   async AddCartItem(customerId, product, qty, isRemove) {
     try {
-      const profile = await CustomerModel.findById(customerId).populate(
-        "cart.product"
-      );
+      const profile =
+        await CustomerModel.findById(customerId).populate("cart.product");
 
       if (profile) {
         const cartItem = {
@@ -187,7 +184,7 @@ class CustomerRepository {
       throw new APIError(
         "API Error",
         STATUS_CODES.INTERNAL_ERROR,
-        "Unable to Create Customer"
+        "Unable to Create Customer",
       );
     }
   }
@@ -214,7 +211,7 @@ class CustomerRepository {
       throw new APIError(
         "API Error",
         STATUS_CODES.INTERNAL_ERROR,
-        "Unable to Create Customer"
+        "Unable to Create Customer",
       );
     }
   }

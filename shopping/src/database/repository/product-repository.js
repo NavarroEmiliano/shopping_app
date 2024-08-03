@@ -31,7 +31,7 @@ class ProductRepository {
       throw new APIError(
         "API Error",
         STATUS_CODES.INTERNAL_ERROR,
-        "Unable to Create Product"
+        "Unable to Create Product",
       );
     }
   }
@@ -43,7 +43,7 @@ class ProductRepository {
       throw new APIError(
         "API Error",
         STATUS_CODES.INTERNAL_ERROR,
-        "Unable to Get Products"
+        "Unable to Get Products",
       );
     }
   }
@@ -55,7 +55,7 @@ class ProductRepository {
       throw new APIError(
         "API Error",
         STATUS_CODES.INTERNAL_ERROR,
-        "Unable to Find Product"
+        "Unable to Find Product",
       );
     }
   }
@@ -68,7 +68,7 @@ class ProductRepository {
       throw new APIError(
         "API Error",
         STATUS_CODES.INTERNAL_ERROR,
-        "Unable to Find Category"
+        "Unable to Find Category",
       );
     }
   }
@@ -84,7 +84,7 @@ class ProductRepository {
       throw new APIError(
         "API Error",
         STATUS_CODES.INTERNAL_ERROR,
-        "Unable to Find Product"
+        "Unable to Find Product",
       );
     }
   }
