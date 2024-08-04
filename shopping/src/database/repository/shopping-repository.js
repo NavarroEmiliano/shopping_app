@@ -1,6 +1,4 @@
 const {
-  CustomerModel,
-  ProductModel,
   OrderModel,
   CartModel
 } = require('../models');
@@ -30,6 +28,7 @@ class ShoppingRepository {
       const cartItems = await CartModel.find({
         customerId
       });
+      console.log(cartItems)
       if (cartItems) {
         return cartItems;
       }
