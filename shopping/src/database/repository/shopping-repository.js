@@ -90,7 +90,7 @@ class ShoppingRepository {
       if (cart) {
         let amount = 0;
 
-        const cartItems = profile.cart;
+        const cartItems = cart.items;
 
         if (cartItems.length > 0) {
           //process Order
@@ -109,14 +109,11 @@ class ShoppingRepository {
             items: cartItems
           });
 
-          profile.cart = [];
+          cart.items = [];
 
-          order.populate('items.product').execPopulate();
           const orderResult = await order.save();
 
-          profile.orders.push(orderResult);
-
-          await profile.save();
+          await cart.save();
 
           return orderResult;
         }
