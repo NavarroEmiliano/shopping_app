@@ -21,7 +21,7 @@ class CustomerRepository {
     } catch (err) {
       throw new APIError(
         'API Error',
-        STATUS_CODES.INTERNAL_ERROR,
+        BadRequestError.STATUS_CODES.INTERNAL_ERROR,
         'Unable to Create Customer',
       );
     }
@@ -48,7 +48,7 @@ class CustomerRepository {
     } catch (err) {
       throw new APIError(
         'API Error',
-        STATUS_CODES.INTERNAL_ERROR,
+        BadRequestError.STATUS_CODES.INTERNAL_ERROR,
         'Error on Create Address',
       );
     }
@@ -61,7 +61,7 @@ class CustomerRepository {
     } catch (err) {
       throw new APIError(
         'API Error',
-        STATUS_CODES.INTERNAL_ERROR,
+        BadRequestError.STATUS_CODES.INTERNAL_ERROR,
         'Unable to Find Customer',
       );
     }
@@ -75,7 +75,7 @@ class CustomerRepository {
     } catch (err) {
       throw new APIError(
         'API Error',
-        STATUS_CODES.INTERNAL_ERROR,
+        BadRequestError.STATUS_CODES.INTERNAL_ERROR,
         'Unable to Find Customer',
       );
     }
@@ -89,7 +89,7 @@ class CustomerRepository {
     } catch (err) {
       throw new APIError(
         'API Error',
-        STATUS_CODES.INTERNAL_ERROR,
+        BadRequestError.STATUS_CODES.INTERNAL_ERROR,
         'Unable to Get Wishlist ',
       );
     }
@@ -140,7 +140,7 @@ class CustomerRepository {
     } catch (err) {
       throw new APIError(
         'API Error',
-        STATUS_CODES.INTERNAL_ERROR,
+        BadRequestError.STATUS_CODES.INTERNAL_ERROR,
         'Unable to Add to WishList',
       );
     }
@@ -191,7 +191,7 @@ class CustomerRepository {
     } catch (err) {
       throw new APIError(
         'API Error',
-        STATUS_CODES.INTERNAL_ERROR,
+        BadRequestError.STATUS_CODES.INTERNAL_ERROR,
         'Unable to Create Customer',
       );
     }
@@ -218,7 +218,7 @@ class CustomerRepository {
     } catch (err) {
       throw new APIError(
         'API Error',
-        STATUS_CODES.INTERNAL_ERROR,
+        BadRequestError.STATUS_CODES.INTERNAL_ERROR,
         'Unable to Create Customer',
       );
     }

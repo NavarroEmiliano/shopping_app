@@ -12,22 +12,27 @@ const OrderSchema = new Schema(
     items: [
       {
         product: {
-          type: Schema.Types.ObjectId,
-          ref: 'product',
-          required: true,
+          _id: { type: String, required: true },
+          name: { type: String },
+          desc: { type: String },
+          banner: { type: String },
+          type: { type: String },
+          unit: { type: Number },
+          price: { type: Number },
+          suplier: { type: String }
         },
-        unit: { type: Number, require: true },
-      },
-    ],
+        unit: { type: Number, require: true }
+      }
+    ]
   },
   {
     toJSON: {
       transform(doc, ret) {
         delete ret.__v;
-      },
+      }
     },
-    timestamps: true,
-  },
+    timestamps: true
+  }
 );
 
 module.exports = mongoose.model('order', OrderSchema);
