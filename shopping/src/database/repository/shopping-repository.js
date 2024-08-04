@@ -14,6 +14,7 @@ class ShoppingRepository {
   async Orders(customerId) {
     try {
       const orders = await OrderModel.find({ customerId });
+      console.log(orders)
       return orders;
     } catch (err) {
       throw APIError(

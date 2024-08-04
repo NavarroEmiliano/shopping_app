@@ -27,7 +27,7 @@ module.exports = app => {
 
     try {
       const { data } = await service.GetOrders(_id);
-      return res.status(200).json(data.orders);
+      return res.status(200).json(data);
     } catch (err) {
       next(err);
     }

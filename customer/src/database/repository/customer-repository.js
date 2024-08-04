@@ -1,7 +1,6 @@
 const { CustomerModel, AddressModel } = require('../models');
 const {
   APIError,
-  BadRequestError,
   STATUS_CODES,
 } = require('../../utils/app-errors');
 
@@ -21,7 +20,7 @@ class CustomerRepository {
     } catch (err) {
       throw new APIError(
         'API Error',
-        BadRequestError.STATUS_CODES.INTERNAL_ERROR,
+        STATUS_CODES.INTERNAL_ERROR,
         'Unable to Create Customer',
       );
     }
@@ -48,7 +47,7 @@ class CustomerRepository {
     } catch (err) {
       throw new APIError(
         'API Error',
-        BadRequestError.STATUS_CODES.INTERNAL_ERROR,
+        STATUS_CODES.INTERNAL_ERROR,
         'Error on Create Address',
       );
     }
@@ -61,21 +60,21 @@ class CustomerRepository {
     } catch (err) {
       throw new APIError(
         'API Error',
-        BadRequestError.STATUS_CODES.INTERNAL_ERROR,
+        STATUS_CODES.INTERNAL_ERROR,
         'Unable to Find Customer',
       );
     }
   }
 
-  async FindCustomerById({ id }) {
+  async FindCustomerById(id) {
     try {
       const existingCustomer =
-        await CustomerModel.findById(id).populate('address');
+        await CustomerModel.findById(id).populate('address')
       return existingCustomer;
     } catch (err) {
       throw new APIError(
         'API Error',
-        BadRequestError.STATUS_CODES.INTERNAL_ERROR,
+        STATUS_CODES.INTERNAL_ERROR,
         'Unable to Find Customer',
       );
     }
@@ -89,7 +88,7 @@ class CustomerRepository {
     } catch (err) {
       throw new APIError(
         'API Error',
-        BadRequestError.STATUS_CODES.INTERNAL_ERROR,
+        STATUS_CODES.INTERNAL_ERROR,
         'Unable to Get Wishlist ',
       );
     }
@@ -140,7 +139,7 @@ class CustomerRepository {
     } catch (err) {
       throw new APIError(
         'API Error',
-        BadRequestError.STATUS_CODES.INTERNAL_ERROR,
+        STATUS_CODES.INTERNAL_ERROR,
         'Unable to Add to WishList',
       );
     }
@@ -162,7 +161,7 @@ class CustomerRepository {
           let isExist = false;
           cartItems.map((item) => {
             if (
-              item.product._id.toString() === cartItem.product._id.toString()
+              item.product._id.toString() === _id.toString()
             ) {
               if (isRemove) {
                 cartItems.splice(cartItems.indexOf(item), 1);
@@ -191,7 +190,7 @@ class CustomerRepository {
     } catch (err) {
       throw new APIError(
         'API Error',
-        BadRequestError.STATUS_CODES.INTERNAL_ERROR,
+        STATUS_CODES.INTERNAL_ERROR,
         'Unable to Create Customer',
       );
     }
@@ -218,7 +217,7 @@ class CustomerRepository {
     } catch (err) {
       throw new APIError(
         'API Error',
-        BadRequestError.STATUS_CODES.INTERNAL_ERROR,
+        STATUS_CODES.INTERNAL_ERROR,
         'Unable to Create Customer',
       );
     }
