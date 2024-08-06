@@ -1,7 +1,14 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const amqplib = require('amqplib');
 
-const { APP_SECRET } = require('../config');
+const {
+  APP_SECRET,
+  MESSAGE_BROKER_URL,
+  EXCHANGE_NAME,
+  QUEUE_NAME,
+  CUSTOMER_BINDING_KEY
+} = require('../config');
 
 //Utility functions
 module.exports.GenerateSalt = async () => {
@@ -15,12 +22,12 @@ module.exports.GeneratePassword = async (password, salt) => {
 module.exports.ValidatePassword = async (
   enteredPassword,
   savedPassword,
-  salt,
+  salt
 ) => {
   return (await this.GeneratePassword(enteredPassword, salt)) === savedPassword;
 };
 
-module.exports.GenerateSignature = async (payload) => {
+module.exports.GenerateSignature = async payload => {
   try {
     return await jwt.sign(payload, APP_SECRET, { expiresIn: '30d' });
   } catch (error) {
@@ -29,7 +36,7 @@ module.exports.GenerateSignature = async (payload) => {
   }
 };
 
-module.exports.ValidateSignature = async (req) => {
+module.exports.ValidateSignature = async req => {
   try {
     const signature = req.get('Authorization');
     const payload = jwt.verify(signature.split(' ')[1], APP_SECRET);
@@ -41,14 +48,13 @@ module.exports.ValidateSignature = async (req) => {
   }
 };
 
-module.exports.FormateData = (data) => {
+module.exports.FormateData = data => {
   if (data) {
     return { data };
   } else {
     throw new Error('Data Not found!');
   }
 };
-
 
 /* --------------------- Message Broker --------------------- */
 
@@ -64,19 +70,10 @@ module.exports.CreateChannel = async () => {
   }
 };
 
-//publish messages
-module.exports.PublishMessage = async (channel, binding_key, message) => {
-  try {
-    await channel.publish(EXCHANGE_NAME, binding_key, Buffer.from(message));
-  } catch (error) {
-    throw error;
-  }
-};
-
 //subscribe messages
-module.exports.SubscribeMessage = async (channel, service, binding_key) => {
+module.exports.SubscribeMessage = async (channel, service) => {
   const appQueue = await channel.assertQueue(QUEUE_NAME);
-  channel.bindQueue(appQueue.queue, EXCHANGE_NAME, binding_key);
+  channel.bindQueue(appQueue.queue, EXCHANGE_NAME, CUSTOMER_BINDING_KEY);
   channel.consume(appQueue.queue, data => {
     console.log('received data');
     console.log(data.content.toString());
