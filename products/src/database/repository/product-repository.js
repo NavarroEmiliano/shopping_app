@@ -1,5 +1,5 @@
 const { ProductModel } = require('../models');
-const { APIError, BadRequestError } = require('../../utils/app-errors');
+const { APIError, BadRequestError, STATUS_CODES } = require('../../utils/app-errors');
 
 //Dealing with data base operations
 class ProductRepository {
@@ -30,7 +30,7 @@ class ProductRepository {
     } catch (err) {
       throw new APIError(
         'API Error',
-        BadRequestError.STATUS_CODES.INTERNAL_ERROR,
+        STATUS_CODES.INTERNAL_ERROR,
         'Unable to Create Product',
       );
     }
@@ -42,7 +42,7 @@ class ProductRepository {
     } catch (err) {
       throw new APIError(
         'API Error',
-        BadRequestError.STATUS_CODES.INTERNAL_ERROR,
+        STATUS_CODES.INTERNAL_ERROR,
         'Unable to Get Products',
       );
     }
@@ -54,7 +54,7 @@ class ProductRepository {
     } catch (err) {
       throw new APIError(
         'API Error',
-        BadRequestError.STATUS_CODES.INTERNAL_ERROR,
+        STATUS_CODES.INTERNAL_ERROR,
         'Unable to Find Product',
       );
     }
@@ -67,7 +67,7 @@ class ProductRepository {
     } catch (err) {
       throw new APIError(
         'API Error',
-        BadRequestError.STATUS_CODES.INTERNAL_ERROR,
+        STATUS_CODES.INTERNAL_ERROR,
         'Unable to Find Category',
       );
     }
@@ -83,7 +83,7 @@ class ProductRepository {
     } catch (err) {
       throw new APIError(
         'API Error',
-        BadRequestError.STATUS_CODES.INTERNAL_ERROR,
+        STATUS_CODES.INTERNAL_ERROR,
         'Unable to Find Product',
       );
     }

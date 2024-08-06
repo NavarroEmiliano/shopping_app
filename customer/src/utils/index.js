@@ -48,3 +48,38 @@ module.exports.FormateData = (data) => {
     throw new Error('Data Not found!');
   }
 };
+
+
+/* --------------------- Message Broker --------------------- */
+
+//create a channel
+module.exports.CreateChannel = async () => {
+  try {
+    const connection = await amqplib.connect(MESSAGE_BROKER_URL);
+    const channel = await connection.createChannel();
+    await channel.assertExchange(EXCHANGE_NAME, 'direct', false);
+    return channel;
+  } catch (error) {
+    throw error;
+  }
+};
+
+//publish messages
+module.exports.PublishMessage = async (channel, binding_key, message) => {
+  try {
+    await channel.publish(EXCHANGE_NAME, binding_key, Buffer.from(message));
+  } catch (error) {
+    throw error;
+  }
+};
+
+//subscribe messages
+module.exports.SubscribeMessage = async (channel, service, binding_key) => {
+  const appQueue = await channel.assertQueue(QUEUE_NAME);
+  channel.bindQueue(appQueue.queue, EXCHANGE_NAME, binding_key);
+  channel.consume(appQueue.queue, data => {
+    console.log('received data');
+    console.log(data.content.toString());
+    console.log(data);
+  });
+};
