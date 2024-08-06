@@ -69,7 +69,7 @@ class CustomerRepository {
   async FindCustomerById(_id) {
     try {
       const existingCustomer =
-        await CustomerModel.findById(_id).populate('address')
+      await CustomerModel.findById(_id).populate('address')
       return existingCustomer;
     } catch (err) {
       throw new APIError(

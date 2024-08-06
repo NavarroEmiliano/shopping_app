@@ -86,9 +86,9 @@ class CustomerService {
     }
   }
 
-  async GetProfile(id) {
+  async GetProfile(_id) {
     try {
-      const existingCustomer = await this.repository.FindCustomerById(id);
+      const existingCustomer = await this.repository.FindCustomerById(_id);
       return FormateData(existingCustomer);
     } catch (err) {
       throw new APIError('Data Not found', err);
