@@ -127,6 +127,7 @@ module.exports = app => {
         { productId },
         'REMOVE_FROM_CART'
       );
+
       PublishCustomerEvent(data);
       PublishShoppingEvent(data);
 
@@ -135,7 +136,7 @@ module.exports = app => {
         unit: data.data.qty
       };
 
-      return res.status(200).json(result);
+      return res.status(200).json(response);
     } catch (err) {
       next(err);
     }
