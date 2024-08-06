@@ -95,9 +95,10 @@ class CustomerService {
     }
   }
 
-  async GetShopingDetails(id) {
+  async GetShopingDetails(_id) {
     try {
-      const existingCustomer = await this.repository.FindCustomerById({ id });
+
+      const existingCustomer = await this.repository.FindCustomerById(_id);
 
       if (existingCustomer) {
         return FormateData(existingCustomer);
