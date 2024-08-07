@@ -76,7 +76,7 @@ module.exports.SubscribeMessage = async (channel, service) => {
   const appQueue = await channel.assertQueue(QUEUE_NAME);
   channel.bindQueue(appQueue.queue, EXCHANGE_NAME, CUSTOMER_BINDING_KEY);
   channel.consume(appQueue.queue, data => {
-    console.log('received data');
+    console.log('received data in Customer service');
     console.log('data content',data.content.toString());
     service.SubscribeEvents(data.content.toString())
     console.log('data', data);

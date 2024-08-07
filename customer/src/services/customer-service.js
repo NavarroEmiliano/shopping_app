@@ -65,7 +65,7 @@ class CustomerService {
 
       return FormateData({ id: existingCustomer._id, token });
     } catch (err) {
-      throw new APIError('Data Not found', err);
+      throw new APIError('Data Not found');
     }
   }
 
@@ -82,7 +82,7 @@ class CustomerService {
       });
       return FormateData(addressResult);
     } catch (err) {
-      throw new APIError('Data Not found', err);
+      throw new APIError('Data Not found');
     }
   }
 
@@ -91,7 +91,7 @@ class CustomerService {
       const existingCustomer = await this.repository.FindCustomerById(_id);
       return FormateData(existingCustomer);
     } catch (err) {
-      throw new APIError('Data Not found', err);
+      throw new APIError('Data Not found');
     }
   }
 
@@ -105,7 +105,7 @@ class CustomerService {
       }
       return FormateData({ msg: 'Error' });
     } catch (err) {
-      throw new APIError('Data Not found', err);
+      throw new APIError('Data Not found');
     }
   }
 
@@ -114,11 +114,12 @@ class CustomerService {
       const wishListItems = await this.repository.Wishlist(customerId);
       return FormateData(wishListItems);
     } catch (err) {
-      throw new APIError('Data Not found', err);
+      throw new APIError('Data Not found');
     }
   }
 
   async AddToWishlist(customerId, product) {
+    console.log('add-to-wishlist',product)
     try {
       const wishlistResult = await this.repository.AddWishlistItem(
         customerId,
@@ -126,7 +127,7 @@ class CustomerService {
       );
       return FormateData(wishlistResult);
     } catch (err) {
-      throw new APIError('Data Not found', err);
+      throw new APIError('Data Not found');
     }
   }
 
@@ -140,7 +141,7 @@ class CustomerService {
       );
       return FormateData(cartResult);
     } catch (err) {
-      throw new APIError('Data Not found', err);
+      throw new APIError('Data Not found');
     }
   }
 
@@ -152,7 +153,7 @@ class CustomerService {
       );
       return FormateData(orderResult);
     } catch (err) {
-      throw new APIError('Data Not found', err);
+      throw new APIError('Data Not found');
     }
   }
 
