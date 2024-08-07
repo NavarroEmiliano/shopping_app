@@ -6,7 +6,7 @@ const {
   GenerateSignature,
   ValidatePassword,
 } = require('../utils');
-const { APIError, BadRequestError } = require('../utils/app-errors');
+const { APIError, BadRequestError, STATUS_CODES } = require('../utils/app-errors');
 
 // All Business logic will be here
 class CustomerService {
@@ -38,7 +38,7 @@ class CustomerService {
 
       return FormateData(null);
     } catch (err) {
-      throw new APIError('Data Not found', err);
+      throw new APIError('Data Not found', STATUS_CODES.UN_AUTHORISED);
     }
   }
 

@@ -33,6 +33,7 @@ class ErrorLogger {
 }
 
 const ErrorHandler = async (err, req, res, next) => {
+  console.log('HOOOOOOLIS')
   const errorLogger = new ErrorLogger();
 
   process.on('uncaughtException', (reason, promise) => {

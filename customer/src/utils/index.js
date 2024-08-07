@@ -39,6 +39,7 @@ module.exports.GenerateSignature = async payload => {
 module.exports.ValidateSignature = async req => {
   try {
     const signature = req.get('Authorization');
+    console.log(signature)
     const payload = jwt.verify(signature.split(' ')[1], APP_SECRET);
     req.user = payload;
     return true;
@@ -76,7 +77,7 @@ module.exports.SubscribeMessage = async (channel, service) => {
   channel.bindQueue(appQueue.queue, EXCHANGE_NAME, CUSTOMER_BINDING_KEY);
   channel.consume(appQueue.queue, data => {
     console.log('received data');
-    console.log(data.content.toString());
-    console.log(data);
+    console.log('data content',data.content.toString());
+    console.log('data', data);
   });
 };

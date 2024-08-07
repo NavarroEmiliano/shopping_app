@@ -81,7 +81,7 @@ class ProductService {
       };
       return FormateData(payload);
     } else {
-      return FormateData({ error: 'No product available' });
+      throw new APIError('Data Not found');
     }
   }
 }
